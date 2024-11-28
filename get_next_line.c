@@ -6,7 +6,7 @@
 /*   By: yansquer <yansquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 04:06:00 by yansquer          #+#    #+#             */
-/*   Updated: 2024/11/28 13:45:36 by yansquer         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:46:33 by yansquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static char	*get_end(char *str)
 	end = ft_strdup(str);
 	if (!end)
 		return (NULL);
+	free(str);
 	return (end);
 }
 
