@@ -6,7 +6,7 @@
 /*   By: yansquer <yansquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 04:06:00 by yansquer          #+#    #+#             */
-/*   Updated: 2024/11/28 14:46:33 by yansquer         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:46:29 by yansquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 static char	*get_end(char *str)
 {
 	char	*end;
+	int		i;
 
-	while (*str && *str != '\n')
-		str++;
-	if (*str)
-		str++;
-	end = ft_strdup(str);
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (str[i])
+		i++;
+	end = ft_strdup(&str[i]);
 	if (!end)
 		return (NULL);
 	free(str);
@@ -46,8 +48,12 @@ static char	*get_start(char *str)
 		line[i] = str[i];
 		i++;
 	}
-	line[i] = '\n';
-	line[i + 1] = '\0';
+	if (str[i] == '\n')
+	{
+		line[i] = '\n';
+		i++;
+	}
+	line[i] = '\0';
 	return (line);
 }
 
