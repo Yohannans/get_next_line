@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yansquer <yansquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 04:06:00 by yansquer          #+#    #+#             */
-/*   Updated: 2024/11/29 17:46:29 by yansquer         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:05:22 by yansquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*get_end(char *str)
 {
@@ -102,15 +102,15 @@ static char	*get_line(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	static char	*str[MAX_FD];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str = get_line(fd, str);
-	if (!str)
+	str[fd] = get_line(fd, str[fd]);
+	if (!str[fd])
 		return (NULL);
-	line = get_start(str);
-	str = get_end(str);
+	line = get_start(str[fd]);
+	str[fd] = get_end(str[fd]);
 	return (line);
 }
